@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3 Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <div id = "dual-listbox">
+            <select id = "select_avaliable"  size="10" >
+                <optgroup label="Available"></optgroup>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+            </select>
+        
+            <div id = "dual-listbox_boutton">
+                <button type="button" id ="add" > &gt;&gt;	 </button>
+                <button type="button" id = "del" > &lt;&lt; </button>
+            </div> 
+        
+            <select id = "select_chosen" width = "1000" size="10">
+                <optgroup label="Chosen"></optgroup>
+
+            </select>
+        </div>
+        <div type="button" id = "save">
+            <button>save</button>
+        </div>
+    </div>
+        
+    
+<script>
+    var availableSelect = $("#select_avaliable")
+    var chosenSelect = $("#select_chosen")
+
+    
+
+    $('#add').click(function() {
+        chosenSelect.append($("<option></option>").text(availableSelect.find(":selected").text()));
+        availableSelect.find(":selected").remove(); 
+    });
+
+    $('#del').click(function() {
+        availableSelect.append($("<option></option>").text(chosenSelect.find(":selected").text()));
+        chosenSelect.find(":selected").remove(); 
+    });
+
+    $('#save').click(function() {
+        var output = ""
+        var ChosenObject = []
+        $('select#select_chosen').find('option').each(function() {
+            output += $(this).text() + "、";
+        });
+
+        output = output.substring(0,output.length-1);
+
+        if (output == ""){
+            alert("您尚未挑選任何值");
+        }
+        else{
+            alert("已挑選 " + output);
+        }
+        
+    });
+</script>
+
+
+</body>
+</html>

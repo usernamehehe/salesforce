@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <style>
+        table{
+            width: 400px;
+        }
+        
+        td.right{
+            border: 1px solid #333;
+            width: 150px;
+        }
+        td.left{
+            border: 1px solid #333;
+            width: 580px;
+        }
+
+        thead,
+        tfoot {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    
+    <button id = "save">Save</button>
+    <table>
+        <tr>
+            <td class="right"><input type="checkbox" id="allUp" ><label for="allUp"> Action </label></td>
+            <td class="left"> Sample Name</td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="A" name="gA" value="A"></td>
+            <td class="left"><label for="A"> A</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="B" name="gA" value="B"></td>
+            <td class="left"><label for="B"> B</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="C" name="gA" value="C"></td>
+            <td class="left"><label for="C"> C</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="D" name="gA" value="D"></td>
+            <td class="left"><label for="D"> D</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="E" name="gA" value="E"></td>
+            <td class="left"><label for="E"> E</label><br></td>
+        </tr>
+        
+        
+    </table>
+    <br><br>
+    <table>
+        <tr>
+            <td class="right"><input type="checkbox" id="allDown" ><label for="allDown"> Action </label></td>
+            <td class="left"> Sample Name</td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="one" name="gB" value="1"></td>
+            <td class="left"><label for="one"> 1</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="two" name="gB" value="2"></td>
+            <td class="left"><label for="two"> 2</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="three" name="gB" value="3"></td>
+            <td class="left"><label for="three"> 3</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="four" name="gB" value="4"></td>
+            <td class="left"><label for="four"> 4</label><br></td>
+        </tr>
+        <tr>
+            <td class="right"><input type="checkbox" id="five" name="gB" value="5"></td>
+            <td class="left"><label for="five"> 5</label><br></td>
+        </tr>
+        
+        
+    </table>
+        
+    <script>
+        var groupA = ["A","b","C","D","E"];
+        var groupB = ["one","two","three","four","five"];
+        var checkBoxA = [];
+        var checkBoxB = [];
+        for (var i =0;i<5;i++){
+            checkBoxA.push("#"+groupA[i])
+            checkBoxB.push("#"+groupB[i])
+        }
+        $("#allUp").click(function() {
+            if($("#allUp").prop("checked")) {
+                $("input[name='gA']").prop("checked", true);
+            } else {
+                $("input[name='gA']").prop("checked", false);     
+            }
+        });
+        $("#allDown").click(function() {
+            if($("#allDown").prop("checked")) {
+                $("input[name='gB']").prop("checked", true);
+            } else {
+                $("input[name='gB']").prop("checked", false);     
+            }
+        });
+        $('#save').click(function() {
+            var output = ""
+            var ChosenObject = []
+            $("input[name='gA']").each(function() {
+                if($(this).prop("checked")){
+                    output += $(this).val() + "、";
+                }
+                
+            });
+            $("input[name='gB']").each(function() {
+                if($(this).prop("checked")){
+                    output += $(this).val() + "、";
+                }
+            });
+            output = output.substring(0,output.length-1);
+
+            if (output == ""){
+                alert("您並沒有挑選");
+            }
+            else{
+                alert("已挑選 " + output);
+            }
+        
+        });
+    </script>
+      
+</body>
+</html>
